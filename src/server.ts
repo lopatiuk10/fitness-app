@@ -3,11 +3,11 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import App from './app';
 import config from './ormconfig';
-import UsersController from './controllers/user.controller';
-//import PostController from './tables/users.controller';
-//import validateEnv from './utils/validateEnv';
- 
-//validateEnv();
+import UserController from './controllers/user.controller';
+import ProgramController from './controllers/program.controller';
+import AssignedProgramController from './controllers/assigned_program.controller';
+import UserRoleController from './controllers/user_role.controller';
+
  
 (async () => {
   try {
@@ -16,7 +16,7 @@ import UsersController from './controllers/user.controller';
     console.log('Error while connecting to the database', error);
     return error;
   }
-  const app = new App([new UsersController],
+  const app = new App([new UserController, new ProgramController, new AssignedProgramController, new UserRoleController],
     5000
   );
   app.listen();
