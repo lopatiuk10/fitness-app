@@ -1,23 +1,29 @@
 import * as express from 'express';
-import Controller from '../interfaces/controller.interface';
-import validationMiddleware from '../middleware/validation.middleware';
-import CreateUserRoleDto from '../dto/user_role.dto';
 import UserRoleService from '../services/user_role.service';
 
  
-class UserRoleController implements Controller {
-  public path = '/roles';
-  public router = express.Router();
-  private service:UserRoleService=new UserRoleService();
- 
-  constructor() {
-    this.initializeRoutes();
+class UserRoleController{
+
+  private service=new UserRoleService();
+
+  public callCreateUserRole = async (request: express.Request, response: express.Response) => {
+    const newUserRole = await this.service.createUserRole(request);
+    response.send(newUserRole);
+  } 
+
+  public callGetAllUserRoles = async (request: express.Request, response: express.Response) => {
+    const userRole = await this.service.getAllUserRoles(request);
+    response.send(userRole);
   }
- 
-  private initializeRoutes() {
-    this.router.post(this.path, validationMiddleware(CreateUserRoleDto), this.service.createUserRole);
-    this.router.get(this.path, this.service.getAllUserRoles);
-    this.router.get(`${this.path}/:id`, this.service.getUserRoleById);
+
+  public callGetAllAthletes = async (request: express.Request, response: express.Response) => {
+    const athletes = await this.service.getAllAthletes(request);
+    response.send(athletes);
+  }
+
+  public callGetUserRoleById = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    const userRole = await this.service.getUserRoleById(request);
+    response.send(userRole);
   }
 }
 

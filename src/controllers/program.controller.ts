@@ -6,21 +6,32 @@ import CreateProgramDto from '../dto/program.dto';
 import Program from '../models/program.entity';
 import ProgramService from '../services/program.service';
  
-class ProgramController implements Controller {
-  public path = '/programs';
-  public router = express.Router();
-  private service:ProgramService=new ProgramService();
- 
-  constructor() {
-    this.initializeRoutes();
+class ProgramController{
+  private service: ProgramService =new ProgramService();
+  public callCreateProgram = async (request: express.Request, response: express.Response) => {
+    const newProgram = await this.service.createProgram(request)
+    response.send(newProgram);
+  }
+
+  public callGetAllPrograms = async (request: express.Request, response: express.Response) => {
+    const program = await this.service.getAllPrograms(request);
+    response.send(program);
+  }
+
+  public callGetProgramById = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    const program = await this.service.getProgramById(request,next);
+    response.send(program);
+  }
+
+  public callEditProgram = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    const updatedProgram = await this.service.editProgram(request);
+    response.send(updatedProgram);
+    
   }
  
-  private initializeRoutes() {
-    this.router.post(this.path, validationMiddleware(CreateProgramDto), this.service.createProgram);
-    this.router.get(this.path, this.service.getAllPrograms);
-    this.router.get(`${this.path}/:id`, this.service.getProgramById);
-    this.router.patch(`${this.path}/:id`, validationMiddleware(CreateProgramDto), this.service.editProgram);//true вторым параметром в validationMiddleware
-    this.router.delete(`${this.path}/:id`, this.service.deleteProgram);
+  public callDeleteProgram = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    const deleteResponse = await this.service.deleteProgram(request);
+    response.send(deleteResponse);
   }
 }
 

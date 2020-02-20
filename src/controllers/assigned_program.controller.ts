@@ -1,25 +1,29 @@
 import * as express from 'express';
-import { getRepository } from 'typeorm';
-import Controller from '../interfaces/controller.interface';
-import validationMiddleware from '../middleware/validation.middleware';
-import CreateAssignedDto from '../dto/assigned_program.dto';
 import AssignedProgramService from '../services/assigned-program.service';
 
  
-class AssignedProgramController implements Controller {
-  public path = '/assigned';
-  public router = express.Router();
+class AssignedProgramController {
+
   private service:AssignedProgramService=new AssignedProgramService();
- 
-  constructor() {
-    this.initializeRoutes();
+
+  public callCreateAssigned = async (request: express.Request, response: express.Response) => {
+    const newProgram =await this.service.createAssigned(request);
+    response.send(newProgram);
   }
- 
-  private initializeRoutes() {
-    this.router.post(this.path, validationMiddleware(CreateAssignedDto), this.service.createAssigned);
-    this.router.get(this.path, this.service.getAllAssigned);
-    this.router.get(`${this.path}/:id`, this.service.getAssignedById);
-    this.router.delete(`${this.path}/:id`, this.service.deleteAssigned);
+
+  public callGetAllAssigned = async (request: express.Request, response: express.Response) => {
+    const program = await this.service.getAllAssigned(request);
+    response.send(program);
+  }
+
+  public callGetAssignedById = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    const program = await this.service.getAssignedById(request,next);
+    response.send(program);
+  }
+
+  public callDeleteAssigned = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    const deleteResponse = await this.service.deleteAssigned(request,next);
+    response.send(deleteResponse);
   }
 }
 

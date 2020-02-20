@@ -2,56 +2,72 @@ import * as express from 'express';
 import { getRepository } from 'typeorm';
 import CreateProgramDto from '../dto/program.dto';
 import Program from '../models/program.entity';
+import User from '../models/user.entity';
 
 class ProgramService{
 
     private programRepository = getRepository(Program);
+    private coachRepository =getRepository(User);
 
-    public createProgram = async (request: express.Request, response: express.Response) => {
-        const programData: CreateProgramDto = request.body;
-        const newProgram = this.programRepository.create(programData);
-        await this.programRepository.save(newProgram);
-        response.send(newProgram);
+    public createProgram = async (request: express.Request) => {
+      const programData = request.body;
+      const newProgram = this.programRepository.create(programData);
+      await this.programRepository.save(newProgram);
+      return(newProgram);
     }
     
-    public getAllPrograms = async (request: express.Request, response: express.Response) => {
-        const program = await this.programRepository.find();
-        response.send(program);
+    public getAllPrograms = async (request: express.Request) => {
+      const program = await this.programRepository.find();
+      return(program);
     }
-    
-    public getProgramById = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
-        const id = request.params.id;
-        const program = await this.programRepository.findOne(id);
-        if (program) {
-          response.send(program);
-        } else {
-            response.send("Not found "+id);
-         // next(new PostNotFoundException(id));
-        }
+
+    public getProgramById = async (request: express.Request, next: express.NextFunction) => {
+      const coachId = request.params.id;
+      const coach=await this.coachRepository.findOne(coachId);
+      const program = await this.programRepository.find({coach_:coach});
+      if (program.length!==0) {
+        return(program);
+      } else {
+          return("Not found "+coachId);
+       // next(new PostNotFoundException(id));
+      }
     }
-    
-    public editProgram = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
-        const id = request.params.id;
-        const programData: Program = request.body;
-        await this.programRepository.update(id, programData);
-        const updatedProgram = await this.programRepository.findOne(id);
-        if (updatedProgram) {
-          response.send(updatedProgram);
-        } else {
-            response.send("Not Found "+id);
-          //next(new PostNotFoundException(id));
-        }
+
+
+    /*
+    public getProgramById = async (request: express.Request) => {
+      const id = request.params.id;
+      const program = await this.programRepository.findOne(id);
+      if (program) {
+        return(program);
+      } else {
+        return("Not found "+id);
+        // next(new PostNotFoundException(id));
+      }
+    }
+    */
+    public editProgram = async (request: express.Request) => {
+      const id = request.params.id;
+      const programData: Program = request.body;
+      await this.programRepository.update(id, programData);
+      const updatedProgram = await this.programRepository.findOne(id);
+      if (updatedProgram) {
+        return(updatedProgram);
+      } else {
+          return("Not Found "+id);
+        //next(new PostNotFoundException(id));
+      }
     }
      
-    public deleteProgram = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
-        const id = request.params.id;
-        const deleteResponse = await this.programRepository.delete(id);
-        if (deleteResponse.raw[1]) {
-          response.sendStatus(200);
-        } else {
-            response.send("Not Found "+id);
-          //next(new PostNotFoundException(id));
-        }
+    public deleteProgram = async (request: express.Request) => {
+      const id = request.params.id;
+      const deleteResponse = await this.programRepository.delete(id);
+      if (deleteResponse.affected!==0) {
+        return("Program "+id+" deleted succesfully");
+      } else {
+        return("Not Found "+id);
+        //next(new PostNotFoundException(id));
+      }
     }
 
 }

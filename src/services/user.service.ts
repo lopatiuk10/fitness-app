@@ -7,16 +7,16 @@ class UserService{
 
     private userRepository = getRepository(User);
 
-    public createUser = async (request: express.Request, response: express.Response) => {
+    public createUser = async (request:express.Request) => {
         const userData: CreateUserDto = request.body;
         const newUser = this.userRepository.create(userData);
         await this.userRepository.save(newUser);
-        response.send(newUser);
+        return(newUser);
     }
     
-    public getAllUsers = async (request: express.Request, response: express.Response) => {
+    public getAllUsers = async (request: express.Request) => {
         const users = await this.userRepository.find();
-        response.send(users);
+        return (users);
     }
 }
 
