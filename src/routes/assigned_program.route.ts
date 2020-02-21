@@ -18,7 +18,7 @@ class AssignedProgramRoute implements Controller {
   private initializeRoutes() {
     this.router.post(this.path, validationMiddleware(CreateAssignedDto), this.controller.callCreateAssigned);
     this.router.get(this.path, this.controller.callGetAllAssigned);
-    this.router.get(`${this.path}/:id`, this.controller.callGetAssignedById);
+    this.router.get(`${this.path}/:id`, this.controller.callGetAssignedByAthleteId);
     this.router.delete(`${this.path}/:id`, this.controller.callDeleteAssigned);
   }
 }
