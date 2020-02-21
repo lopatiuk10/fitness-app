@@ -24,15 +24,14 @@ class ProgramService{
     }
 
     //Получить все программы по ID тренера
-    public getProgramByCoachId = async (request: express.Request, next: express.NextFunction) => {
-      const coachId = request.params.id;
+    public getProgramByCoachId = async (params) => {
+      const coachId = params.id;
       const coach=await this.coachRepository.findOne(coachId);
       const program = await this.programRepository.find({coach_:coach});
       if (program.length!==0) {
         return(program);
       } else {
           return("Not found "+coachId);
-       // next(new PostNotFoundException(id));
       }
     }
 
@@ -51,14 +50,13 @@ class ProgramService{
     }
 
     //Удалить программу 
-    public deleteProgram = async (request: express.Request) => {
-      const id = request.params.id;
+    public deleteProgram = async (params) => {
+      const id = params.id;
       const deleteResponse = await this.programRepository.delete(id);
       if (deleteResponse.affected!==0) {
         return("Program "+id+" deleted succesfully");
       } else {
         return("Not Found "+id);
-        //next(new PostNotFoundException(id));
       }
     }
 

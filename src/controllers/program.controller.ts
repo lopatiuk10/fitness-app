@@ -19,7 +19,7 @@ class ProgramController{
   }
 
   public callGetProgramByCoachId = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
-    const program = await this.service.getProgramByCoachId(request,next);
+    const program = await this.service.getProgramByCoachId(request.params);
     response.send(program);
   }
 
@@ -30,7 +30,7 @@ class ProgramController{
   }
  
   public callDeleteProgram = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
-    const deleteResponse = await this.service.deleteProgram(request);
+    const deleteResponse = await this.service.deleteProgram(request.params);
     response.send(deleteResponse);
   }
 }
