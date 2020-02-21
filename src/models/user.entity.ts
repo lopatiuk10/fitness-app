@@ -7,13 +7,16 @@ import AssignedProgram from "./assigned_program.entity";
 @Entity()
 class User {
   @PrimaryGeneratedColumn()
-  public id?: number;
+  public id: number;
  
   @Column()
   public name: string;
  
   @Column()
   public lastname: string;
+
+  @Column()
+  public email: string;
 
   @Column()
   public password :string;

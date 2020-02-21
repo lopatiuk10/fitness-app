@@ -3,10 +3,11 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import App from './app';
 import config from './ormconfig';
-//import PostController from './tables/users.controller';
-//import validateEnv from './utils/validateEnv';
- 
-//validateEnv();
+import UserRoute from './routes/user.route';
+import UserRoleRoute from './routes/user_role.route';
+import ProgramRoute from './routes/program.route';
+import AssignedProgramRoute from './routes/assigned_program.route';
+
  
 (async () => {
   try {
@@ -15,7 +16,7 @@ import config from './ormconfig';
     console.log('Error while connecting to the database', error);
     return error;
   }
-  const app = new App(
+  const app = new App([new UserRoute, new ProgramRoute, new AssignedProgramRoute, new UserRoleRoute],
     5000
   );
   app.listen();
