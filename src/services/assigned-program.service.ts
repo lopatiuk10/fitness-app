@@ -8,6 +8,7 @@ class AssignedProgramService{
     private programRepository = getRepository(AssignedPrograms);
     private athleteRepository =getRepository(User);
     
+    //Назначить программу на атлета
     public createAssigned = async (body) => {
         const programData: CreateAssignedProgramDto = body;
         const newProgram = this.programRepository.create(programData);
@@ -15,11 +16,13 @@ class AssignedProgramService{
         return(newProgram);
       }
     
+      //Получить все назначенные программы
       public getAllAssigned = async () => {
         const program = await this.programRepository.find();
         return(program);
       }
     
+      //Получить все программы назначенные на атлета
       public getAssignedById = async (request: express.Request, next: express.NextFunction) => {
         const athleteId = request.params.id;
         const athlete=await this.athleteRepository.findOne({id:JSON.parse(athleteId)});
@@ -32,6 +35,7 @@ class AssignedProgramService{
         }
       }
     
+      //Удалить назначенную программу
       public deleteAssigned = async (request: express.Request, next: express.NextFunction) => {
         const id = request.params.id;
         const deleteResponse = await this.programRepository.delete(id);

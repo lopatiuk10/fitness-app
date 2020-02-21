@@ -17,7 +17,7 @@ class ProgramRoute implements Controller {
   private initializeRoutes() {
     this.router.post(this.path, this.controller.callCreateProgram);
     this.router.get(this.path, this.controller.callGetAllPrograms);
-    this.router.get(`${this.path}/:id`, this.controller.callGetProgramById);
+    this.router.get(`${this.path}/:id`, this.controller.callGetProgramByCoachId);
     this.router.patch(`${this.path}/:id`, validationMiddleware(CreateProgramDto), this.controller.callEditProgram);//true вторым параметром в validationMiddleware
     this.router.delete(`${this.path}/:id`, this.controller.callDeleteProgram);
   }

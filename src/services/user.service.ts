@@ -8,9 +8,10 @@ import UserRole from '../models/user_role.entity';
 class UserService{
 
     private userRepository = getRepository(User);
-    private roleRepository=getRepository(Role)
-    private userRoleRepository=getRepository(UserRole)
+    private roleRepository=getRepository(Role);
+    private userRoleRepository=getRepository(UserRole);
 
+    //Создать пользователя
     public createUser = async (body) => {
         const userData: CreateUserDto =body;
         const newUser = this.userRepository.create(userData);
@@ -18,11 +19,13 @@ class UserService{
         return(newUser);
     }
     
+    //Получить всех пользователей
     public getAllUsers = async () => {
         const users = await this.userRepository.find();
         return (users);
     }
 
+    //Получить всех атлетов
     public getAthletes = async () => {
         const role  = await this.roleRepository.findOne({id:1});
         const users=await this.userRepository.find();

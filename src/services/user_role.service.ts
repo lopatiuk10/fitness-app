@@ -9,6 +9,7 @@ class UserRoleService{
     private userRoleRepository = getRepository(UserRole);
     private roleRepository=getRepository(Role);
 
+    //Создать роль для пользователя
     public createUserRole = async (body) => {
         const userRoleData: CreateUserRoleDto = body;
         const newUserRole = this.userRoleRepository.create(userRoleData);
@@ -16,17 +17,13 @@ class UserRoleService{
         return (newUserRole);
     }
 
+    //Получить всех пользователей с ролями
     public getAllUserRoles = async () => {
         const userRole = await this.userRoleRepository.find();
         return(userRole);
     }
 
-    public getAllAthletes = async () => {
-        const role  = await this.roleRepository.findOne({id:1});
-        const athletes = await this.userRoleRepository.find({role_:role});
-        return(athletes);
-    }
-
+    //Получить пользователя с ролью по ID
     public getUserRoleById = async (request: express.Request) => {
         const id = request.params.id;
         const userRole = await this.userRoleRepository.findOne(id);

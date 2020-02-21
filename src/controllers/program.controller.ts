@@ -18,8 +18,8 @@ class ProgramController{
     response.send(program);
   }
 
-  public callGetProgramById = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
-    const program = await this.service.getProgramById(request,next);
+  public callGetProgramByCoachId = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    const program = await this.service.getProgramByCoachId(request,next);
     response.send(program);
   }
 
