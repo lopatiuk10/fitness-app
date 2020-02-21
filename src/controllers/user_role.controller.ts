@@ -17,7 +17,7 @@ class UserRoleController{
   }
 
   public callGetUserRoleById = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
-    const userRole = await this.service.getUserRoleById(request);
+    const userRole = await this.service.getUserRoleById(request.params);
     response.send(userRole);
   }
 }

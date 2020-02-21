@@ -24,8 +24,8 @@ class UserRoleService{
     }
 
     //Получить пользователя с ролью по ID
-    public getUserRoleById = async (request: express.Request) => {
-        const id = request.params.id;
+    public getUserRoleById = async (params) => {
+        const id = params.id;
         const userRole = await this.userRoleRepository.findOne(id);
         if (userRole) {
           return(userRole);
