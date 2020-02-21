@@ -8,14 +8,14 @@ class AssignedProgramService{
     private programRepository = getRepository(AssignedPrograms);
     private athleteRepository =getRepository(User);
     
-    public createAssigned = async (request: express.Request) => {
-        const programData: CreateAssignedProgramDto = request.body;
+    public createAssigned = async (body) => {
+        const programData: CreateAssignedProgramDto = body;
         const newProgram = this.programRepository.create(programData);
         await this.programRepository.save(newProgram);
         return(newProgram);
       }
     
-      public getAllAssigned = async (request: express.Request) => {
+      public getAllAssigned = async () => {
         const program = await this.programRepository.find();
         return(program);
       }

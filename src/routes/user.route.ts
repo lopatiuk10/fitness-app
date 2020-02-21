@@ -7,6 +7,7 @@ import UserController from '../controllers/user.controller';
  
 class UserRoute implements Controller {
   public path = '/users';
+  public athletesPath="/athletes";
   public router = express.Router();
   private controller: UserController=new UserController();
  
@@ -17,6 +18,7 @@ class UserRoute implements Controller {
   private initializeRoutes() {
     this.router.post(this.path, validationMiddleware(CreateUserDto), this.controller.callCreateUser);
     this.router.get(this.path, this.controller.callGetAllUsers);
+    this.router.get(this.athletesPath, this.controller.callGetAthletes);
   }
 }
 

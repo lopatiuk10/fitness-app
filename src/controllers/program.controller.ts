@@ -9,12 +9,12 @@ import ProgramService from '../services/program.service';
 class ProgramController{
   private service: ProgramService =new ProgramService();
   public callCreateProgram = async (request: express.Request, response: express.Response) => {
-    const newProgram = await this.service.createProgram(request)
+    const newProgram = await this.service.createProgram(request.body)
     response.send(newProgram);
   }
 
   public callGetAllPrograms = async (request: express.Request, response: express.Response) => {
-    const program = await this.service.getAllPrograms(request);
+    const program = await this.service.getAllPrograms();
     response.send(program);
   }
 

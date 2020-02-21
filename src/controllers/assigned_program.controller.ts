@@ -7,12 +7,12 @@ class AssignedProgramController {
   private service:AssignedProgramService=new AssignedProgramService();
 
   public callCreateAssigned = async (request: express.Request, response: express.Response) => {
-    const newProgram =await this.service.createAssigned(request);
+    const newProgram =await this.service.createAssigned(request.body);
     response.send(newProgram);
   }
 
   public callGetAllAssigned = async (request: express.Request, response: express.Response) => {
-    const program = await this.service.getAllAssigned(request);
+    const program = await this.service.getAllAssigned();
     response.send(program);
   }
 

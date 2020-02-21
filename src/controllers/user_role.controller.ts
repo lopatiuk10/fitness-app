@@ -7,17 +7,17 @@ class UserRoleController{
   private service=new UserRoleService();
 
   public callCreateUserRole = async (request: express.Request, response: express.Response) => {
-    const newUserRole = await this.service.createUserRole(request);
+    const newUserRole = await this.service.createUserRole(request.body);
     response.send(newUserRole);
   } 
 
   public callGetAllUserRoles = async (request: express.Request, response: express.Response) => {
-    const userRole = await this.service.getAllUserRoles(request);
+    const userRole = await this.service.getAllUserRoles();
     response.send(userRole);
   }
 
   public callGetAllAthletes = async (request: express.Request, response: express.Response) => {
-    const athletes = await this.service.getAllAthletes(request);
+    const athletes = await this.service.getAllAthletes();
     response.send(athletes);
   }
 

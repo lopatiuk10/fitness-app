@@ -9,14 +9,14 @@ class ProgramService{
     private programRepository = getRepository(Program);
     private coachRepository =getRepository(User);
 
-    public createProgram = async (request: express.Request) => {
-      const programData = request.body;
+    public createProgram = async (body) => {
+      const programData = body;
       const newProgram = this.programRepository.create(programData);
       await this.programRepository.save(newProgram);
       return(newProgram);
     }
     
-    public getAllPrograms = async (request: express.Request) => {
+    public getAllPrograms = async () => {
       const program = await this.programRepository.find();
       return(program);
     }
@@ -33,19 +33,6 @@ class ProgramService{
       }
     }
 
-
-    /*
-    public getProgramById = async (request: express.Request) => {
-      const id = request.params.id;
-      const program = await this.programRepository.findOne(id);
-      if (program) {
-        return(program);
-      } else {
-        return("Not found "+id);
-        // next(new PostNotFoundException(id));
-      }
-    }
-    */
     public editProgram = async (request: express.Request) => {
       const id = request.params.id;
       const programData: Program = request.body;

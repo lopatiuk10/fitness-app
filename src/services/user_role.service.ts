@@ -9,19 +9,19 @@ class UserRoleService{
     private userRoleRepository = getRepository(UserRole);
     private roleRepository=getRepository(Role);
 
-    public createUserRole = async (request: express.Request) => {
-        const userRoleData: CreateUserRoleDto = request.body;
+    public createUserRole = async (body) => {
+        const userRoleData: CreateUserRoleDto = body;
         const newUserRole = this.userRoleRepository.create(userRoleData);
         await this.userRoleRepository.save(newUserRole);
         return (newUserRole);
     }
 
-    public getAllUserRoles = async (request: express.Request) => {
+    public getAllUserRoles = async () => {
         const userRole = await this.userRoleRepository.find();
         return(userRole);
     }
 
-    public getAllAthletes = async (request: express.Request) => {
+    public getAllAthletes = async () => {
         const role  = await this.roleRepository.findOne({id:1});
         const athletes = await this.userRoleRepository.find({role_:role});
         return(athletes);
