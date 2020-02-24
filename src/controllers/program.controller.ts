@@ -1,36 +1,37 @@
 import * as express from 'express';
 import { getRepository } from 'typeorm';
-import Controller from '../interfaces/controller.interface';
+import Controller from '../interfaces/route.interface';
 import validationMiddleware from '../middleware/validation.middleware';
 import CreateProgramDto from '../dto/program.dto';
 import Program from '../models/program.entity';
 import ProgramService from '../services/program.service';
  
 class ProgramController{
-  private service: ProgramService =new ProgramService();
-  public callCreateProgram = async (request: express.Request, response: express.Response) => {
-    const newProgram = await this.service.createProgram(request.body)
+  private service: ProgramService = new ProgramService();
+
+  public create = async (request: express.Request, response: express.Response) => {
+    const newProgram = await this.service.create(request.body)
     response.send(newProgram);
   }
 
-  public callGetAllPrograms = async (request: express.Request, response: express.Response) => {
-    const program = await this.service.getAllPrograms();
+  public getAll = async (request: express.Request, response: express.Response) => {
+    const program = await this.service.getAll();
     response.send(program);
   }
 
-  public callGetProgramByCoachId = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
-    const program = await this.service.getProgramByCoachId(request.params);
+  public getByCoachId = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    const program = await this.service.getByCoachId(request.params.id);
     response.send(program);
   }
 
-  public callEditProgram = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
-    const updatedProgram = await this.service.editProgram(request);
+  public edit = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    const updatedProgram = await this.service.edit(request.params.id, request.body);
     response.send(updatedProgram);
     
   }
  
-  public callDeleteProgram = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
-    const deleteResponse = await this.service.deleteProgram(request.params);
+  public delete = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    const deleteResponse = await this.service.delete(request.params.id);
     response.send(deleteResponse);
   }
 }

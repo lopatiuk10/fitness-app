@@ -10,7 +10,7 @@ class UserRole {
     @ManyToOne(() => User, (user: User) => user.role_id)
     public user_: User;
 
-    @ManyToOne(()=>Role,(role:Role)=>role.userRoles)
+    @ManyToOne( () => Role, (role:Role) => role.userRoles)
     public role_:Role;
 
 }

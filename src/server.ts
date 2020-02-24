@@ -4,9 +4,9 @@ import { createConnection } from 'typeorm';
 import App from './app';
 import config from './ormconfig';
 import UserRoute from './routes/user.route';
-import UserRoleRoute from './routes/user_role.route';
+import UserRoleRoute from './routes/user-role.route';
 import ProgramRoute from './routes/program.route';
-import AssignedProgramRoute from './routes/assigned_program.route';
+import AssignedProgramRoute from './routes/assigned-program.route';
 
  
 (async () => {

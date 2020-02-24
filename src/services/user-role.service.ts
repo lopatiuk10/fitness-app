@@ -1,16 +1,19 @@
 import * as express from 'express';
 import { getRepository } from 'typeorm';
-import CreateUserRoleDto from '../dto/user_role.dto';
-import UserRole from '../models/user_role.entity';
-import Role from '../models/role.entity';
+import CreateUserRoleDto from '../dto/user-role.dto';
+import UserRole from '../models/user-role.entity';
 
 class UserRoleService{
 
-    private userRoleRepository = getRepository(UserRole);
-    private roleRepository=getRepository(Role);
+    private userRoleRepository;
+    
+    constructor(){
+        this.userRoleRepository = getRepository(UserRole);
+    }
+    
 
     //Создать роль для пользователя
-    public createUserRole = async (body) => {
+    public create = async (body) => {
         const userRoleData: CreateUserRoleDto = body;
         const newUserRole = this.userRoleRepository.create(userRoleData);
         await this.userRoleRepository.save(newUserRole);
@@ -18,20 +21,18 @@ class UserRoleService{
     }
 
     //Получить всех пользователей с ролями
-    public getAllUserRoles = async () => {
+    public getAll = async () => {
         const userRole = await this.userRoleRepository.find();
         return(userRole);
     }
 
     //Получить пользователя с ролью по ID
-    public getUserRoleById = async (params) => {
-        const id = params.id;
+    public getById = async (id) => {
         const userRole = await this.userRoleRepository.findOne(id);
         if (userRole) {
           return(userRole);
         } else {
-            return("Not found "+id);
-         // next(new PostNotFoundException(id));
+            return("Not found " + id);
         }
     }
 }
