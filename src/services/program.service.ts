@@ -26,7 +26,7 @@ class ProgramService{
     //Получить все программы по ID тренера
     public getProgramByCoachId = async (params) => {
       const coachId = params.id;
-      const coach=await this.coachRepository.findOne(coachId);
+      const coach = await this.coachRepository.findOne(coachId);
       const program = await this.programRepository.find({coach_:coach});
       if (program.length!==0) {
         return(program);
