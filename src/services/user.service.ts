@@ -10,13 +10,14 @@ class UserService{
     private userRepository;
     private roleRepository;
     private userRoleRepository;
-    
+
     constructor(){
         this.userRepository = getRepository(User);
         this.roleRepository = getRepository(Role);
         this.userRoleRepository = getRepository(UserRole);
     }
-    //Создать пользователя
+
+    //Create user
     public create = async (body) => {
         const userData: CreateUserDto = body;
         const newUser = this.userRepository.create(userData);
@@ -24,12 +25,13 @@ class UserService{
         return(newUser);
     }
 
-    //Получить всех пользователей
+    //Get all users
     public getAll = async () => {
         const users = await this.userRepository.find();
         return (users);
     }
-    //Получить всех атлетов
+    
+    //Get all athletes
     public getAthletes = async () => {
         const role  = await this.roleRepository.findOne({id: 1});
         const users = await this.userRepository.find();

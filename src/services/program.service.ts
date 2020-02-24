@@ -15,7 +15,7 @@ class ProgramService{
   }
 
   
-  //Создать программму
+  //Create programm
   public create = async (body) => {
     const programData: CreateProgramDto = body;
     const newProgram = this.programRepository.create(programData);
@@ -23,13 +23,13 @@ class ProgramService{
     return(newProgram);
   }
   
-  //Получить все программы
+  //Get all programs
   public getAll = async () => {
     const program = await this.programRepository.find();
     return(program);
   }
   
-  //Получить все программы по ID тренера
+  //Get all programs created by coach
   public getByCoachId = async (id) => {
     const coachId = id;
     const coach = await this.coachRepository.findOne(coachId);
@@ -41,7 +41,7 @@ class ProgramService{
     }
   }
 
-  //Изменить программу
+  //Edit program
   public edit = async (id, body) => {
     const programData: Program = body;
     await this.programRepository.update(id, programData);
@@ -53,7 +53,8 @@ class ProgramService{
       //next(new PostNotFoundException(id));
     }
   }
-  //Удалить программу 
+
+  //Delete program
   public delete= async (id) => {
     const deleteResponse = await this.programRepository.delete(id);
     if (deleteResponse.affected !== 0) {

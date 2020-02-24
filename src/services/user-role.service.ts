@@ -12,7 +12,7 @@ class UserRoleService{
     }
     
 
-    //Создать роль для пользователя
+    //Create role for user
     public create = async (body) => {
         const userRoleData: CreateUserRoleDto = body;
         const newUserRole = this.userRoleRepository.create(userRoleData);
@@ -20,13 +20,13 @@ class UserRoleService{
         return (newUserRole);
     }
 
-    //Получить всех пользователей с ролями
+    //Get all user roles
     public getAll = async () => {
         const userRole = await this.userRoleRepository.find();
         return(userRole);
     }
 
-    //Получить пользователя с ролью по ID
+    //Get user roles by id
     public getById = async (id) => {
         const userRole = await this.userRoleRepository.findOne(id);
         if (userRole) {
