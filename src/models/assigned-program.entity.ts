@@ -7,11 +7,11 @@ class AssignedPrograms {
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @ManyToOne(()=>User,(user:User)=>user.assignedPrograms)
-    public athlete_:User;
+    @ManyToOne( () => User,(user:User) => user.assignedPrograms)
+    public athlete_: User;
 
-    @ManyToOne(()=>Program,(program:Program)=>program.assignedPrograms)
-    public program_:Program;
+    @ManyToOne( () => Program, (program: Program) => program.assignedPrograms)
+    public program_: Program;
 
 }
  

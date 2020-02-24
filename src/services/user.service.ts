@@ -3,45 +3,46 @@ import { getRepository } from 'typeorm';
 import CreateUserDto from '../dto/user.dto';
 import User from '../models/user.entity';
 import Role from '../models/role.entity';
-import UserRole from '../models/user_role.entity';
+import UserRole from '../models/user-role.entity';
 
 class UserService{
-
-    private userRepository = getRepository(User);
-    private roleRepository=getRepository(Role);
-    private userRoleRepository=getRepository(UserRole);
-
+    
+    private userRepository;
+    private roleRepository;
+    private userRoleRepository;
+    constructor(){
+        this.userRepository = getRepository(User);
+        this.roleRepository = getRepository(Role);
+        this.userRoleRepository = getRepository(UserRole);
+    }
     //Создать пользователя
-    public createUser = async (body) => {
+    public create = async (body) => {
         const userData: CreateUserDto =body;
         const newUser = this.userRepository.create(userData);
         await this.userRepository.save(newUser);
         return(newUser);
     }
-    
+
     //Получить всех пользователей
-    public getAllUsers = async () => {
+    public getAll = async () => {
         const users = await this.userRepository.find();
         return (users);
     }
-
     //Получить всех атлетов
     public getAthletes = async () => {
-        const role  = await this.roleRepository.findOne({id:1});
+        const role  = await this.roleRepository.findOne({id: 1});
         const users = await this.userRepository.find();
         let athlete;
-        const athletes =users.map(async(item) => {
-            const user:User=item;
-            athlete = await this.userRoleRepository.find({user_:user,role_:role});
-            if(athlete.length>0){
+        const athletes = users.map(async(item) => {
+            const user: User = item;
+            athlete = await this.userRoleRepository.find({user_: user, role_: role});
+            if(athlete.length > 0){
                return item; 
             }
         });
-
-        const promiseAthletes= Promise.all(athletes);
-
-        const filteredAthletes=(await promiseAthletes).filter(item=>{
-            if(item!==undefined)
+        const promiseAthletes = Promise.all(athletes);
+        const filteredAthletes = (await promiseAthletes).filter(item => {
+            if(item !== undefined)
             return item;
         });
         return filteredAthletes;  
