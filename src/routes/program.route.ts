@@ -15,7 +15,7 @@ class ProgramRoute implements Route {
   }
  
   private initializeRoutes() {
-    this.router.post(this.path, this.controller.create);
+    this.router.post(this.path,validationMiddleware(CreateProgramDto), this.controller.create);
     this.router.get(this.path, this.controller.getAll);
     this.router.get(`${this.path}/:id`, this.controller.getByCoachId);
     this.router.patch(`${this.path}/:id`, validationMiddleware(CreateProgramDto), this.controller.edit);

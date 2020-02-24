@@ -2,6 +2,7 @@ import * as express from 'express';
 import { getRepository } from 'typeorm';
 import Program from '../models/program.entity';
 import User from '../models/user.entity';
+import CreateProgramDto from 'dto/program.dto';
 
 class ProgramService{
 
@@ -16,7 +17,7 @@ class ProgramService{
   
   //Создать программму
   public create = async (body) => {
-    const programData = body;
+    const programData: CreateProgramDto = body;
     const newProgram = this.programRepository.create(programData);
     await this.programRepository.save(newProgram);
     return(newProgram);
@@ -27,6 +28,7 @@ class ProgramService{
     const program = await this.programRepository.find();
     return(program);
   }
+  
   //Получить все программы по ID тренера
   public getByCoachId = async (id) => {
     const coachId = id;
@@ -38,6 +40,7 @@ class ProgramService{
         return("Not found " + coachId);
     }
   }
+
   //Изменить программу
   public edit = async (id, body) => {
     const programData: Program = body;
