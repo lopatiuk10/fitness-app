@@ -28,18 +28,23 @@ class UserService{
     //Получить всех атлетов
     public getAthletes = async () => {
         const role  = await this.roleRepository.findOne({id:1});
-        const users=await this.userRepository.find();
+        const users = await this.userRepository.find();
         let athlete;
-        let athletes=[];
-            for(let i=0;i<users.length;i++){
-               const user:User=users[i];
-               athlete=await this.userRoleRepository.find({user_:user,role_:role});
-               if(athlete.length!==0)
-               athletes.push(user);
-               else
-               continue;
+        const athletes =users.map(async(item) => {
+            const user:User=item;
+            athlete = await this.userRoleRepository.find({user_:user,role_:role});
+            if(athlete.length>0){
+               return item; 
             }
-        return(athletes);
+        });
+
+        const promiseAthletes= Promise.all(athletes);
+
+        const filteredAthletes=(await promiseAthletes).filter(item=>{
+            if(item!==undefined)
+            return item;
+        });
+        return filteredAthletes;  
     }
 }
 
