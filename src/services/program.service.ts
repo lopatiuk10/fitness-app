@@ -47,7 +47,7 @@ class ProgramService{
     await this.programRepository.update(id, programData);
     const updatedProgram = await this.programRepository.findOne(id);
     if (updatedProgram) {
-      return(updatedProgram);
+      return(await this.programRepository.find());
     } else {
         return("Not Found " + id);
       //next(new PostNotFoundException(id));
@@ -58,7 +58,7 @@ class ProgramService{
   public delete= async (id) => {
     const deleteResponse = await this.programRepository.delete(id);
     if (deleteResponse.affected !== 0) {
-      return("Program " + id + " deleted succesfully");
+      return(await this.programRepository.find());
     } else {
       return("Not Found " + id);
     }

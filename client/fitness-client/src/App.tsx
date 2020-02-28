@@ -1,23 +1,17 @@
-import * as React from 'react'
-import { Component } from 'react'
-import { Provider } from 'mobx-react'
+import * as React from 'react';
+import ProgramList  from './components/programs/program-list';
+import  AthleteList  from './components/athletes/athlete-list';
+//import {ProgramComponent} from './components/program.component'
 
-import { ProgramStore } from './stores/program.store'
-import { ProgramAdd } from './stores/program.add'
-import { ProgramList } from './stores/program.list'
 
-export class App extends React.Component {
-  private programStore: ProgramStore = new ProgramStore()
+class App extends React.Component {
 
   render() {
-    return (
-      <Provider programStore={this.programStore}>
-        <div>
-          <ProgramAdd />
-          <ProgramList />
-        </div>
-      </Provider>
-    )
+    return <div>
+     <ProgramList/>
+     <AthleteList/>
+     </div>
+    
   }
 }
 export default App;

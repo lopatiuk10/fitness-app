@@ -1,3 +1,40 @@
 .programs{
   border:1px solid black;
 }
+
+.hidenId {
+  display: none;
+}
+
+.edit-form {
+  border: 1px solid black;
+  width:350px;
+  height:150px;
+  display: none;
+  
+}
+#edit-form input{
+  margin: 5px;
+  clear: both;
+}
+
+#edit-form button {
+  clear: both;
+  margin-top: 20px;
+}
+
+.displayBlock{
+  border: 1px solid black;
+  width:350px;
+  height:150px;
+  display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -255px;
+  top: 50%;
+  margin-top: -155px;
+}
+
+.hiddenBlock {
+  display: none;
+}
