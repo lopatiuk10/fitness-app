@@ -12,10 +12,9 @@ export const AthleteList = types.model({
   athletes: types.array(AthleteItem)
 })
 .actions(self => ({
-  async getAthletes ( e ) {
-    e.stopPropagation();
+  async getAthletes ( ) {
+    //e.stopPropagation();
     const result = await service.getAthletes();
-    debugger;
     self.athletes = result;
   }
 }))

@@ -12,8 +12,7 @@ export const ProgramList = types.model({
   isVisible: types.optional(types.boolean, false)
 })
 .actions(self => ({
-  async getPrograms ( e ) {
-    e.stopPropagation();
+  async getPrograms () {
     const result = await service.getAllPrograms();
     self.programs = result;
   },
@@ -30,9 +29,22 @@ export const ProgramList = types.model({
 
   showForm( e, id ){
     e.stopPropagation();
+    debugger;
     targetId = id;
-    let form = document.getElementById("edit-form")
-    form.className = 'displayBlock';
+    debugger;
+    self.isVisible = true;
+    debugger;
+
+    // let form = document.getElementById("edit-form")
+    // form.className = 'displayBlock';
+  },
+
+  hideForm ( e ){
+    e.preventDefault();
+    self.isVisible = false;
+
+    // let form = document.getElementById("edit-form")
+    // form.className = 'hiddenBlock';
   },
 
   async editProgram( e, inputName, inputDuration){
@@ -53,6 +65,8 @@ export const ProgramList = types.model({
 
 export const list = ProgramList.create({
 });
+
+
 
 export const model = ProgramItem.create({
   id: 0,

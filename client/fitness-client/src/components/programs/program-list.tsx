@@ -8,10 +8,9 @@ import { ApiServices } from "../../services/api-services";
 import { EditForm } from './edit-form';
 import { Button } from '../../shares/buttons';
 
-export const AppView = observer(props => (
+export const AppView = observer( props => (
     <div>
-       <EditForm list = {list} model = {model}/> 
-      <Button title = "Programs" onClick = {e => list.getPrograms(e) }/>
+       {props.list.isVisible ? <EditForm list = {list} model = {model}/> : null}
       <table>
         <thead>
           <tr>
@@ -19,20 +18,22 @@ export const AppView = observer(props => (
           </tr>
         </thead>
         <tbody>
-          
-           {props.list.programs.map( program => (
-             <Program list = { props.list}  programs = { program } />
-      ))}
+           { props.list.programs.map( program => (
+            <Program list = { props.list}  programs = { program } />
+          ))}
       </tbody>
       </table>
     </div>
   ));
 
 class ProgramList extends React.Component{
-
+  componentDidMount(){
+    list.getPrograms();
+  }
+  
     render(){
       return (
-        <AppView list = { list } model = { model }/>
+        <AppView list = { list } model = { model } />
       )
     }
 }

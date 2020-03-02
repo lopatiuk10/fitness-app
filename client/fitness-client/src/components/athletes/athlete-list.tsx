@@ -9,7 +9,7 @@ import { athleteStore } from "../../stores/athlete.store";
 
 export const AppView = observer(props => (
     <div>
-      <Button title = "Athletes" onClick = {e => athleteStore.getAthletes(e) }/>
+      {/* <Button title = "Athletes" onClick = {e => athleteStore.getAthletes(e) }/> */}
       <table>
         <thead>
           <tr>
@@ -26,6 +26,10 @@ export const AppView = observer(props => (
   ));
 
   class AthleteList extends React.Component{
+    componentDidMount(){
+      athleteStore.getAthletes();
+    }
+    
     render(){
       return (
         <AppView athleteStore = { athleteStore } />

@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, AxiosStatic } from 'axios';
+import axios from 'axios';
 
 export class ApiServices{
 
