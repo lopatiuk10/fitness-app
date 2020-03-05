@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 export class Navigation extends React.Component{
     render(){
         return <nav>
-            <Link to="/programs">Programs </Link>  
-            <Link to="/athletes">Athletes</Link>  
+            <Link to = '/login'>Login </Link>
+            <Link to = '/registration'>Registration</Link>
         </nav>;
     }
 }

@@ -7,14 +7,16 @@ import { list, model } from '../../stores/program.store';
 import { ApiServices } from "../../services/api-services";
 import { EditForm } from './edit-form';
 import { Button } from '../../shares/buttons';
+import { CreateForm} from './create';
 
 export const AppView = observer( props => (
     <div>
-       {props.list.isVisible ? <EditForm list = {list} model = {model}/> : null}
+        <EditForm list = {list} model = {model}/> 
+        <CreateForm list = {list} model = {model}/>
       <table>
         <thead>
           <tr>
-            <td>ID</td><td>Name</td><td>Duration</td>
+            <td>ID</td><td>Name</td><td>Duration</td><td><Button title = "Create" onClick = { e => list.showCreateForm ( e )}/></td>
           </tr>
         </thead>
         <tbody>

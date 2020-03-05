@@ -1,9 +1,9 @@
 import { observer, PropTypes } from "mobx-react";
 import React from 'react';
-import '../../App.css';
-import { Button } from '../../shares/buttons';
-import { AthleteList, athleteStore } from '../../stores/athlete.store';
-import { list} from '../../stores/program.store'
+//import '../../App.css';
+import { Button } from '../../../shares/buttons';
+import { AthleteList, athleteStore } from '../../../stores/athlete.store';
+import { list} from '../../../stores/program.store'
 
 
 

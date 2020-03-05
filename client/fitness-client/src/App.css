@@ -38,3 +38,20 @@
 .hiddenBlock {
   display: none;
 }
+
+.create-form {
+  border: 1px solid black;
+  width:350px;
+  height:150px;
+  display: none;
+  
+}
+#create-form input{
+  margin: 5px;
+  clear: both;
+}
+
+#create-form button {
+  clear: both;
+  margin-top: 20px;
+}

@@ -1,8 +1,6 @@
 import { types } from "mobx-state-tree";
 import { ApiServices } from '../services/api-services';
 
-let service: ApiServices = new ApiServices;
-
 export const ProgramItem = types.model({
     id: types.identifierNumber,
     name: types.string,

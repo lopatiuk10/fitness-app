@@ -5,7 +5,8 @@
       "outDir": "./dist",
       "baseUrl": "./src",
       "experimentalDecorators":true,
-      "emitDecoratorMetadata": true
+      "emitDecoratorMetadata": true,
+      "esModuleInterop":true
       
     },
     "include": [

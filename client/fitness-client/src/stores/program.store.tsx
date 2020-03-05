@@ -1,6 +1,7 @@
 import { ApiServices } from '../services/api-services';
 import { ProgramItem } from '../models/programs';
 import { types, unprotect } from "mobx-state-tree";
+import { user } from './user.store';
 
 import '../App.css';
 
@@ -13,38 +14,61 @@ export const ProgramList = types.model({
 })
 .actions(self => ({
   async getPrograms () {
-    const result = await service.getAllPrograms();
+    const result = await service.getAllPrograms(user.id);
+    if( result === `Not found ${user.id}`)
+    return self.programs;
     self.programs = result;
+  },
+
+  async createProgram (e, programName, programDuration ) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const body = {
+      name: programName,
+      duration: programDuration,
+      coach_:user.id
+    }
+
+    const result = await service.createProgram(body);
+    self.programs.push(result);
+
   },
   
   async deleteProgram(e, id ) {
     e.stopPropagation();
-    debugger;
     const result = await service.deleteProgram(id);
     
     self.programs = result;
-    debugger;
     console.log( result );
   },
 
   showForm( e, id ){
     e.stopPropagation();
-    debugger;
     targetId = id;
-    debugger;
-    self.isVisible = true;
-    debugger;
+    // self.isVisible = true;
+    // debugger;
 
-    // let form = document.getElementById("edit-form")
-    // form.className = 'displayBlock';
+    let form = document.getElementById("edit-form")
+    form.className = 'displayBlock';
   },
+
+  showCreateForm( e ){
+    e.stopPropagation();
+    // self.isVisible = true;
+    // debugger;
+
+    let form = document.getElementById("create-form")
+    form.className = 'displayBlock';
+  },
+
 
   hideForm ( e ){
     e.preventDefault();
-    self.isVisible = false;
+    // self.isVisible = false;
 
-    // let form = document.getElementById("edit-form")
-    // form.className = 'hiddenBlock';
+    let form = document.getElementById("edit-form")
+    form.className = 'hiddenBlock';
   },
 
   async editProgram( e, inputName, inputDuration){
@@ -52,12 +76,15 @@ export const ProgramList = types.model({
     let data = {
       name: inputName,
       duration: inputDuration,
-      coach_:45
+      coach_: user.id
     }
-    debugger;
+
     let result = await service.editProgram(targetId, data);
+
     self.programs = result;
+
     let form = document.getElementById("edit-form")
+
     form.className = 'hiddenBlock';
   }
 }))

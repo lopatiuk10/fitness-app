@@ -2,10 +2,10 @@ import { observer, PropTypes } from "mobx-react";
 import { values } from "mobx";
 import React from 'react';
 import '../../App.css';
-import { list, model } from '../../stores/program.store';
-import { Button } from '../../shares/buttons';
+import { list, model } from '../../../stores/program.store';
+import { Button } from '../../../shares/buttons';
 import { Athlete } from './athlete-item';
-import { athleteStore } from "../../stores/athlete.store";
+import { athleteStore } from "../../../stores/athlete.store";
 
 export const AppView = observer(props => (
     <div>
