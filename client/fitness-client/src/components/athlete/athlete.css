@@ -1,0 +1,200 @@
+.link{
+    display: inline-block;
+    width: 100px;
+    height: 25px;
+    border-radius: 20px;
+    text-decoration: none;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    color:white;
+     background-color: #679ef0;
+}
+
+.link:hover{
+    color: #679ef0;
+    border: 1px solid#679ef0;
+    background-color: inherit;
+}
+
+.login-form {
+    width:200px;
+    height:300px;
+    padding: 10px;
+    border: 1px solid #c7c7c7;
+    border-radius: 5px;
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    margin-top: -100px;
+    margin-left: -75px; 
+}
+
+.registration-form {
+    width:200px;
+    height:300px;
+    padding: 10px;
+    border: 1px solid #c7c7c7;
+    border-radius: 5px;
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    margin-top: -100px;
+    margin-left: -75px; 
+    
+}
+
+.registration-form .button {
+    margin-left: 50px;
+    color: #679ef0;
+    margin-top: 20px;
+    font-size:16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800;
+    border:none;
+    background-color: inherit;
+}
+
+.registration-form .button:hover {
+    cursor: pointer;
+    color:red;
+}
+
+.registration-form .text {
+    height:25px;
+    padding-left: 5px;
+    border-radius: 5px;
+    border: 1px solid #c7c7c7;
+}
+
+.registration-form .select {
+    height:25px;
+    padding-left: 5px;
+    border-radius: 5px;
+    border: 1px solid #c7c7c7;
+    margin-top: 20px;
+    margin-left: 65px;
+    border:1px solid #679ef0;
+    color:#679ef0;
+    background-color:inherit;
+}
+
+.text {
+    margin:5px;
+}
+
+.login-form .button {
+    margin-left: 65px;
+    color: #679ef0;
+    margin-top:40px;
+    font-size:16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800;
+    border:none;
+    background-color: inherit;
+}
+
+.login-form .button:hover {
+    cursor: pointer;
+    color:red;
+}
+
+.login-form .text {
+    height:25px;
+    padding-left: 5px;
+    border-radius: 5px;
+    border: 1px solid #c7c7c7;
+}
+
+.label {
+    margin-left: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 300;
+
+}
+
+.caption {
+    margin-top:10px;
+    margin-left: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.logoutButton{
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    text-decoration: none;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    color:white;
+    background-color: #ff0a60;
+    border:none;
+    float: right;
+    font-size:16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800;
+}
+
+.logoutButton:hover{
+    color: #ff0a60;
+    border: 1px solid#ff0a60;
+    background-color: inherit;
+    cursor: pointer;
+    
+}
+
+.programs {
+    position: absolute;
+    left:50%;
+    margin-top:200px;
+    margin-left:-350px;
+    border:none;
+}
+
+.programs tr {
+    width:100px;
+    height: 30px;
+}
+
+.programs .programId {
+    width: 50px;
+}
+
+.programName {
+    width: 300px;
+    height: 30px;
+}
+
+.programs .button {
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    text-decoration: none;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    color:white;
+    background-color: #679ef0;
+    border:none;
+    float: right;
+    font-size:16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800;
+    margin-bottom:20px;
+}
+
+.programs .button:hover {
+    color: #679ef0;
+    border: 1px solid#679ef0;
+    background-color: inherit;
+    cursor: pointer;
+}
+
+.programs caption {
+    margin-left: -395px;
+    margin-bottom: -15px;
+    font-size: 20px;
+}
+
+

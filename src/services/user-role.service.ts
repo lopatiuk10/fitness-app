@@ -28,9 +28,9 @@ class UserRoleService{
 
     //Get user roles by id
     public getById = async (id) => {
-        const userRole = await this.userRoleRepository.findOne(id);
+        const userRole = await this.userRoleRepository.query(`SELECT role_id FROM user_role WHERE user_id = ${id}`);
         if (userRole) {
-          return(userRole);
+          return(userRole[0]);
         } else {
             return("Not found " + id);
         }
