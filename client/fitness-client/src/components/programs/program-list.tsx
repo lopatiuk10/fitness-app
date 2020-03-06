@@ -6,7 +6,7 @@ import { Program} from './program-item';
 import { list, model } from '../../stores/program.store';
 import { ApiServices } from "../../services/api-services";
 import { EditForm } from './edit-form';
-import { Button } from '../../shares/buttons';
+import { Button, LogoutButton } from '../../shares/buttons';
 import { CreateForm} from './create';
 import { user } from "../../stores/user.store";
 import { Link } from 'react-router-dom';
@@ -39,8 +39,8 @@ class ProgramList extends React.Component{
   
     render(){
       return (<div>
-        <Link to = '/programs' className = 'link'>Programs</Link>
-
+        <Link to = '/athletes' className = 'link'>Athletes</Link>
+        <LogoutButton title = 'Logout' onClick = {e => user.logout(e)}/>
         <AppView list = { list } model = { model } />
         </div>
       )
