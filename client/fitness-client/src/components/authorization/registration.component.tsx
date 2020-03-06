@@ -19,8 +19,7 @@ export class RegistrationComponent  extends React.Component{
         if(user.isRegistrated)
         return <Redirect to = '/registrated'/>
         return <div>
-            <Link to = '/login'>Login </Link>
-            <Link to = '/coach'>Coach</Link>
+            <Link  to = '/login' className = 'link'>Login </Link>
             <Registration user = {user} model = {model}/>
         </div>
     }

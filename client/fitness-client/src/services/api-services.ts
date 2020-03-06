@@ -5,6 +5,7 @@ export class ApiServices{
    private path = "http://localhost:5000";
 
    public getAllPrograms = async (id) => {
+    debugger;
    const results = await axios.get ( `${this.path}/programs/${id}` );
    return results.data;
    }
@@ -25,6 +26,7 @@ export class ApiServices{
 
     public getAthletes = async () => {
         const result = await axios.get(`${this.path}/athletes`);
+        debugger;
         return result.data;
     }
 
@@ -50,10 +52,9 @@ export class ApiServices{
         return result.data;
     }
 
-    public isAuthorized = async (token) => {
-        const result = await axios.get(`${this.path}/login/${token}`,{ withCredentials: true } );
+    public isAuthorized = async () => {
+        const result = await axios.get(`${this.path}/login`,{ withCredentials: true } );
         debugger;
-
         return result.data;
     }
 
@@ -65,6 +66,11 @@ export class ApiServices{
 
     public createProgram = async (body) => {
         const result = await axios.post(`${this.path}/programs`, body);
+        return result.data;
+    }
+
+    public logout = async () => {
+        const result = await axios.get(`${this.path}/logout`);
         return result.data;
     }
 }

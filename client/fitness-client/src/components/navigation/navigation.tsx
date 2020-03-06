@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
  
 export class Navigation extends React.Component{
     render(){
         return <nav>
-            <Link to = '/login'>Login </Link>
-            <Link to = '/registration'>Registration</Link>
+            <NavLink to = '/login' className = 'link'>Login </NavLink>
+            <NavLink to = '/registration' className = 'link'>Registration</NavLink>
         </nav>;
     }
 }

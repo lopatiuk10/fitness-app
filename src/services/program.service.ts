@@ -55,10 +55,10 @@ class ProgramService{
   }
 
   //Delete program
-  public delete= async (id) => {
+  public delete = async (id) => {
     const deleteResponse = await this.programRepository.delete(id);
     if (deleteResponse.affected !== 0) {
-      return(await this.programRepository.find());
+      return ( await this.programRepository.find());
     } else {
       return("Not Found " + id);
     }

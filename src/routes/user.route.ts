@@ -7,6 +7,7 @@ import UserController from '../controllers/user.controller';
 import passport from 'passport';
 import User from 'models/user.entity';
 import * as session from 'express-session';
+import { currentUser } from '../app';
 
 
 //import mustAuthenticatedMw from '../app';
@@ -40,18 +41,15 @@ class UserRoute implements Route {
     // }
     // );
     this.router.get('/logout', function(req, res){
-      console.log(req.isAuthenticated());
       req.logout();
-      console.log(req.isAuthenticated());
       res.send('Logged out');
       });
 
-    this.router.get('/login/:email', function ( req, res ) {
-      //if(req.user === req.params.email && req.params.email)
-      res.send(req.isAuthenticated());
-      // res.send(true);
-      // else
-      // res.send(false);
+    this.router.get('/login', function ( req, res ) {
+     if(req.isAuthenticated())
+     res.send(req.user);
+     else
+     res.send(false);
     }
     );
 

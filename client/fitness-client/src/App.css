@@ -10,8 +10,7 @@
   border: 1px solid black;
   width:350px;
   height:150px;
-  display: none;
-  
+  display: none;  
 }
 #edit-form input{
   margin: 5px;
@@ -31,8 +30,8 @@
   position: absolute;
   left: 50%;
   margin-left: -255px;
-  top: 50%;
-  margin-top: -155px;
+
+ 
 }
 
 .hiddenBlock {
@@ -55,3 +54,10 @@
   clear: both;
   margin-top: 20px;
 }
+
+/* .link{
+  display: inline-block;
+  width: 75 px;
+  height: 20 px;
+  list-style: none;
+} */

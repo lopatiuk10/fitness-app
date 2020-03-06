@@ -15,6 +15,7 @@ export const AthleteList = types.model({
   async getAthletes ( ) {
     //e.stopPropagation();
     const result = await service.getAthletes();
+    debugger;
     self.athletes = result;
   }
 }))

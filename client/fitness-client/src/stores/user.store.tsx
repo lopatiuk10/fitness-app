@@ -17,11 +17,20 @@ const service: ApiServices = new ApiServices();
 
 export let userRole;
 
+export const model = User.create({
+    id:0,
+    name: "",
+    lastname: "",
+    email: "triviani",
+    role:"Coach",
+    password: "1234"
+});
+
 const AuthorizedUser = types.model({
     id: types.optional( types.number, 0 ),
     email: types.optional( types.string, "" ),
     role: types.optional( types.number, 0 ),
-    isAuthorized: types.optional( types.boolean, false ),
+    isAuthorized: types.optional(types.boolean, false),
     isRegistrated: types.optional( types. boolean, false)
 })
 .actions(self => ({
@@ -40,15 +49,30 @@ const AuthorizedUser = types.model({
             let role = await service.getRole(self.id);
             self.role = role.role_id;  
             self.isAuthorized = true; 
+            debugger;
+            window.location.href = '/redirect';
+            debugger;
+            model.setEmail("");
+            model.setPassword("");
+            
         }   
         
     },
 
-    async isAuthenticate ( data ) {
-        let result = await service.isAuthorized(data);
-        if(result)
+    async isAuthenticate ( ) {
+        let result = await service.isAuthorized();
+        if(result){
         self.isAuthorized = true;
-        //return result;
+        self.id = result.id;
+        self.email = result.email;
+        let role = await service.getRole(self.id);
+        self.role = role.role_id; 
+        debugger;
+        }
+        else{
+            self.isAuthorized = false;
+            debugger;
+        }
     },
 
     async registration ( e, userName, userLastname, userEmail, userRole, userPassword ) {
@@ -81,21 +105,32 @@ const AuthorizedUser = types.model({
             let role = await service.setRole(roleData);
             console.log(role);
         }
+        window.location.href = '/login';
+    },
+
+    async logout (e) {
+        e.stopPropagation();
+        let result = await service.logout();
+        if( result === "Logged out"){
+            self.isAuthorized = false;
+            //return self.auth;
+            //service.isAuthorized();
+            window.location.href = '/';
+        }
+        debugger;
+
 
         return result;
-    }  
-}))
+
+    }
+
+}));
+
+
 
 export const user = AuthorizedUser.create({
+
 });
 
 unprotect(user);
 
-export const model = User.create({
-    id:0,
-    name: "",
-    lastname: "",
-    email: "",
-    role:"Coach",
-    password: ""
-});

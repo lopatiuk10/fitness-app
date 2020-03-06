@@ -30,8 +30,12 @@ export const ProgramList = types.model({
       coach_:user.id
     }
 
+
+
     const result = await service.createProgram(body);
     self.programs.push(result);
+    let form = document.getElementById("create-form")
+    form.className = 'hiddenBlock';
 
   },
   
@@ -60,6 +64,14 @@ export const ProgramList = types.model({
 
     let form = document.getElementById("create-form")
     form.className = 'displayBlock';
+  },
+
+  hideCreateForm ( e ){
+    e.preventDefault();
+    // self.isVisible = false;
+
+    let form = document.getElementById("create-form")
+    form.className = 'hiddenBlock';
   },
 
 

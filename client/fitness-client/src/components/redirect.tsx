@@ -7,24 +7,20 @@ import { Navigation } from '../components/navigation/navigation';
 import { Login } from '../components/logIn';
 import { LoginComponent } from '../components/login-component';
 import { user } from '../stores/user.store';
-import { CoachWindow } from '../components/coach/coachWindow';
-import { Unauthorized } from './unauthorized';
-import { Athlete2 } from './athlete/athlete';
+import {Link} from 'react-router-dom';
+
 
 //import { Coach } from './components/coach';
 
 
-export class Wrapper extends React.Component {
+export class Coach extends React.Component {
   componentDidMount(){
     user.isAuthenticate();
   }
   render() {
-  
-    return <div>
-          <Navigation/>
-          <Route exact path = '/programs' component = {ProgramList}/>
-          {/* <Route exact path = '/athletes' component = {AthleteList}/> */}
-     </div>
-    
+    return  <div>
+        <Link to = '/coach' className = 'link'>Coach</Link>
+        <Link to ='/athlete' className = 'link'>Athlete</Link>
+    </div>
   }
 }

@@ -8,9 +8,9 @@ import  User from './models/user.entity';
 import  passport  from "passport";
 import  passportLocal from "passport-local";
 import  session from 'express-session';
-import cors from 'cors';
 
 const LocalStrategy = passportLocal.Strategy;
+export let currentUser;
 
 passport.use(new LocalStrategy({
   usernameField: 'email',
@@ -24,20 +24,21 @@ passport.use(new LocalStrategy({
       return done( null, false );
     }
     if (result.password !== password) { return done( null, false ); }
+      currentUser = result.id;
       return done( null, result );
   }
 ));
 
 passport.serializeUser(function ( user: any, done) {
-  done(null, user.email);
+  done(null, user.id);
 });
 
- passport.deserializeUser( async function(userEmail: string, done) {
+ passport.deserializeUser( async function(userId: string, done) {
   const user = getRepository(User);
 
-  let result = await user.findOne({email: userEmail});
+  let result = await user.findOne(userId);
   if(result)
-    done(null, result.email);
+    done(null, result);
  });
 
 

@@ -7,7 +7,7 @@ export class Unauthorized extends React.Component {
     render(){
         return<div>
              <h2>Unauthorized</h2>
-             <Link to = '/login'>Login</Link>
+             <Link className = 'link' to = '/login'>Login</Link>
         </div>
     }
 }

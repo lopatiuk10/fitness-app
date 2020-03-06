@@ -12,6 +12,7 @@ class UserController {
   public registration = async ( request: express.Request, response: express.Response ) => {
     let result = await this.service.registration(request.body);
     response.send(result);
+    
   }
 
   public create = async (request: express.Request, response: express.Response) => {

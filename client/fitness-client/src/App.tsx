@@ -14,6 +14,8 @@ import { RegistrationComponent } from './components/authorization/registration.c
 import { history } from 'react-router-history'
 import { Exception } from './components/authorization/exception';
 import { Athlete2 } from './components/athlete/athlete';
+import './App.css';
+import { Coach } from './components/redirect';
 //import { Coach } from './components/coach';
 
 
@@ -30,6 +32,10 @@ class App extends React.Component {
               <Route exact path = '/registration' component = {RegistrationComponent}/>
               <Route exact path = '/registrated' component = {Exception}/>
               <Route exact path = '/athlete' component = {Athlete2}/>
+              <Route exact path = '/redirect' component = {Coach}/>
+              <Route exact path = '/athletes' component = {AthleteList}/>
+              <Route exact path = '/programs' component = {ProgramList}/>
+
           </Switch>
       </Router>
 
