@@ -61,7 +61,7 @@ const AuthorizedUser = types.model({
 
     async isAuthenticate ( ) {
         let result = await service.isAuthorized();
-        if(result){
+        if ( result ) {
         self.isAuthorized = true;
         self.id = result.id;
         self.email = result.email;

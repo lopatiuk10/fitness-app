@@ -39,10 +39,12 @@ export const ProgramList = types.model({
 
   },
   
-  async deleteProgram(e, id ) {
+  async deleteProgram(e, userId ) {
     e.stopPropagation();
-    const result = await service.deleteProgram(id);
-    
+    const result = await service.deleteProgram(userId);
+
+    let index = self.programs.findIndex(x => x.id === userId);
+    debugger;
     self.programs = result;
     console.log( result );
   },
